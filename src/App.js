@@ -9,7 +9,6 @@ function App() {
   return (
     <div className="App">
       <DYBNavigation />
-      <h1><Badge bg="secondary" text="dark">IN PROGRESS</Badge></h1>
       <Routes>
         <Route path='/' element={<Home />} />
       </Routes>

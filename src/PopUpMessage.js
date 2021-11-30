@@ -6,8 +6,10 @@ const PopUpMessage = ({ title, message, value }) => {
     if (!title) {
         title = "Thank you"
     }
+    console.log(value['date']+ " popupmessage");
     if (!message) {
-        message = "Your self evaluation score is " + value + " !"
+        message = "Your self evaluation score is " + value.points + 
+        " for date:" + value.date + " !"
     }
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -33,7 +35,7 @@ const PopUpMessage = ({ title, message, value }) => {
 }
 
 function buildCache(score) {
-    localStorage.setItem(JSON.stringify({'now': new Date()}), score)
+    localStorage.setItem(JSON.stringify(score.date), score.points)
 }
 
 
