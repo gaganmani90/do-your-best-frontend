@@ -5,7 +5,7 @@ import styles from './App.module.css'
 
 const PerformanceForm = ({ day }) => {
     if (!day) {
-        day = formatDate();
+        day = formatDate(new Date())
     }
     const [value, setValue] = useState({
         date: day,
@@ -70,8 +70,10 @@ const ScoreRange = ({ value, setValue }) => {
     );
 }
 
-function formatDate() {
-    var today = new Date();
+const formatDate = ({today}) =>  {
+    if(!today) {
+        today = new Date();
+    }
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
