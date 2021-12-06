@@ -1,6 +1,8 @@
 import { Modal, Button } from "react-bootstrap";
 import React, { useEffect, useState } from 'react';
-import {put, get} from "./ScoreCache"
+import {put, get, getAllItems} from "./ScoreCache"
+import ScoreHistoryTable from "./ScoreHistoryTable";
+import { Highlights } from "./PerformanceForm";
 
 const NAME = "Gagan"
 
@@ -23,6 +25,9 @@ const PopUpMessage = ({ title, message, value }) => {
                 buildCache(value)
                 setShow(true)
             }} size="lg">Submit</Button>
+
+            <ScoreHistoryTable scoreItems={getAllItems()} />
+            <Highlights />
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
