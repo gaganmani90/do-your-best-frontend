@@ -2,6 +2,9 @@ import { Form, Button, Badge } from 'react-bootstrap';
 import React, { useState } from 'react';
 import PopUpMessage from './PopUpMessage';
 import styles from './App.module.css'
+import {formatDate, PerformanceCalendar} from "./PerformanceCalendar"
+
+let DEFAULT_SCORE = 50;
 
 const PerformanceForm = ({ day }) => {
     if (!day) {
@@ -14,6 +17,7 @@ const PerformanceForm = ({ day }) => {
     return (
         <>
             <div className={styles.center} >
+                <PerformanceCalendar setDate={setValue}/>
                 <ScoreBadge value={value} />
                 <ScoreRange value={value} setValue={setValue} />
                 <PopUpMessage value={value} />
@@ -70,17 +74,6 @@ const ScoreRange = ({ value, setValue }) => {
     );
 }
 
-const formatDate = ({today}) =>  {
-    if(!today) {
-        today = new Date();
-    }
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    
-    today = mm + '/' + dd + '/' + yyyy;
-    return today.toString()
-}
 
 
 export default PerformanceForm;

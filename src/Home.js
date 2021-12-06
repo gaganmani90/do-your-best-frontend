@@ -1,11 +1,10 @@
 import PerformanceForm from "./PerformanceForm";
-import PerformanceCalendar from "./PerformanceCalendar";
+import {PerformanceCalendar} from "./PerformanceCalendar";
 
 const Home = () => {
     return (
         <>
             <PerformanceForm />
-            <PerformanceCalendar />
         </>
     );
 }

@@ -1,6 +1,8 @@
 import { Modal, Button } from "react-bootstrap";
 import React, { useEffect, useState } from 'react';
-import styles from './App.module.css'
+import {put, get} from "./ScoreCache"
+
+const NAME = "Gagan"
 
 const PopUpMessage = ({ title, message, value }) => {
     if (!title) {
@@ -35,7 +37,7 @@ const PopUpMessage = ({ title, message, value }) => {
 }
 
 function buildCache(score) {
-    localStorage.setItem(JSON.stringify(score.date), score.points)
+    put(NAME, score.date, score.points)
 }
 
 

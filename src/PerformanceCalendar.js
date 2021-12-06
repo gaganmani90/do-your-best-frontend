@@ -1,17 +1,24 @@
 import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
 import React, { useState } from "react";
+import {put} from "./ScoreCache"
 
-const PerformanceCalendar = () => {
-    const [date, setDate] = useState(new Date());
+const NAME = "Gagan"
+
+const PerformanceCalendar = ({setDate}) => {
+    var today = new Date()
 
     return (
         <>
-            <Datetime value={date} onChange={
+            <Datetime value={today} onChange={
                 moment => {
                     var selectedDate = formatDate(moment.toDate())
+                    setDate({
+                        points: 50,
+                        date: selectedDate
+                    })
                     console.log("date changed to: " + selectedDate)
-                    localStorage.setItem(selectedDate, "")
+                    put(NAME, selectedDate, 50)
                 }
             } />
         </>
@@ -28,4 +35,4 @@ const formatDate = (today) => {
     return today.toString()
 }
 
-export default PerformanceCalendar;
+export {PerformanceCalendar, formatDate};
