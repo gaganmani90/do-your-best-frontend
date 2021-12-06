@@ -26,6 +26,7 @@ const PopUpMessage = ({ title, message, value }) => {
                 setShow(true)
             }} size="lg">Submit</Button>
 
+
             <ScoreHistoryTable scoreItems={getAllItems()} />
             <Highlights />
 

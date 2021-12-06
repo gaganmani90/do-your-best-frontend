@@ -1,4 +1,4 @@
-import { Form, Button, Badge, Container } from 'react-bootstrap';
+import { Form, Button, Badge, Container, ProgressBar } from 'react-bootstrap';
 import React, { useState } from 'react';
 import PopUpMessage from './PopUpMessage';
 import styles from './App.module.css'
@@ -81,10 +81,26 @@ const ScoreRange = ({ value, setValue }) => {
 export const Highlights = () => {
     return (
         <>
-        <Badge bg="secondary">Best Score: {bestScore()}</Badge>
-        <Badge bg="secondary">Total entries: {totalEntries()}</Badge>
+            Best Score: {<BestScoreProgressBar score={bestScore()} />}
+            <Badge bg="secondary">Total entries: {totalEntries()}</Badge>
         </>
     )
+}
+
+const BestScoreProgressBar = ({ score }) => {
+    if (score > 75) {
+        return (
+            <ProgressBar variant="success" animated now={score} label={`${score}%`} />
+        );
+    } else if (score > 25 && score <= 75) {
+        return (
+            <ProgressBar variant="warning" animated now={score} label={`${score}%`} />
+        );
+    } else {
+        return (
+            <ProgressBar variant="danger" animated now={score} label={`${score}%`} />
+        );
+    }
 }
 
 export default PerformanceForm;
