@@ -2,10 +2,11 @@ import { Form, Button, Badge, Container, ProgressBar } from 'react-bootstrap';
 import React, { useState } from 'react';
 import PopUpMessage from './PopUpMessage';
 import styles from './App.module.css'
-import { formatDate, PerformanceCalendar } from "./PerformanceCalendar"
+import {PerformanceCalendar } from "./PerformanceCalendar"
 import { bestScore, totalEntries } from './util/ScoreUtil';
+import { formatDate } from './util/DateUtil';
 
-let DEFAULT_SCORE = 50;
+export const DEFAULT_SCORE = 50;
 
 const PerformanceForm = ({ day }) => {
     if (!day) {
@@ -13,7 +14,7 @@ const PerformanceForm = ({ day }) => {
     }
     const [value, setValue] = useState({
         date: day,
-        points: 50
+        points: DEFAULT_SCORE
     });
     return (
         <>
@@ -30,8 +31,8 @@ const PerformanceForm = ({ day }) => {
 }
 
 
-const ScoreBadge = ({ value }) => {
-
+const ScoreBadge = (props) => {
+    var value = props.value
     let score = value.points;
     console.log("scorebadge:" + score)
     if (score > 75) {
@@ -49,7 +50,9 @@ const ScoreBadge = ({ value }) => {
     }
 }
 
-const CustomBadge = ({ type, score }) => {
+const CustomBadge = (props) => {
+    let type = props.type;
+    let score = props.score 
     return (
         <h1><Badge pill bg={type}>
             <b>{score}</b>
@@ -62,7 +65,9 @@ const CustomBadge = ({ type, score }) => {
  * @param {*} param0 
  * @returns 
  */
-const ScoreRange = ({ value, setValue }) => {
+const ScoreRange = (props) => {
+    let value = props.value
+    let setValue = props.setValue
     var score = value.points;
     return (
         <Form.Range value={score} onChange={
@@ -87,7 +92,8 @@ export const Highlights = () => {
     )
 }
 
-const BestScoreProgressBar = ({ score }) => {
+const BestScoreProgressBar = (props) => {
+    let score = props.score
     if (score > 75) {
         return (
             <ProgressBar variant="success" animated now={score} label={`${score}%`} />

@@ -23,7 +23,7 @@ const PopUpMessage = ({ title, message, value }) => {
         <>
             <Button variant="primary" onClick={() => {
                 buildCache(value)
-                setShow(true)
+                handleShow()
             }} size="lg">Submit</Button>
 
 

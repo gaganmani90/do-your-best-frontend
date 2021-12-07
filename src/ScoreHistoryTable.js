@@ -8,7 +8,7 @@ const ScoreItemRow = ({ scoreItem, row }) => {
             <td>{scoreItem.date} </td>
             <td>{scoreItem.score} </td>
             <td>{scoreItem.updateCount} </td>
-            <td>{scoreItem.mostRecentUpdate} </td>
+            <td>{scoreItem.timestamp} </td>
         </tr>
     )
 }
