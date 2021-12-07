@@ -3,7 +3,7 @@ import { Form, Card, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 
-function Login() {
+function ForgetPassword() {
   const emailRef = useRef(null);
   const { resetPassword } = useAuth();
   const [error, setError] = useState("");
@@ -53,4 +53,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ForgetPassword;
