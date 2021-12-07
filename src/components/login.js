@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Form, Card, Button, Alert } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 
 function Login() {
@@ -9,7 +9,7 @@ function Login() {
   const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const history = useHistory(); // hook for redirecting to routes
+  const navigate = useNavigate(); // hook for redirecting to routes
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ function Login() {
       setLoading(true);
       setError("");
       await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/"); // redirecting to dashboard
+      navigate("/"); // redirecting to dashboard
     } catch (error) {
       setError("failed to Log in");
     }

@@ -9,6 +9,7 @@ function Signup() {
   const passwordConfirmRef = useRef(null);
   const { signup } = useAuth();
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -20,6 +21,7 @@ function Signup() {
       setLoading(true);
       setError("");
       await signup(emailRef.current.value, passwordRef.current.value);
+      setSuccess("Successfully signed up !")
     } catch (error) {
       setError("failed to create an account");
     }
@@ -32,6 +34,7 @@ function Signup() {
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
+          {success && <Alert variant="success">{success}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
