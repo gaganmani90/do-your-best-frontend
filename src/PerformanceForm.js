@@ -1,10 +1,11 @@
-import { Form, Button, Badge, Container, ProgressBar } from 'react-bootstrap';
+import { Form, Button, Badge, Container, ProgressBar, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import React, { useState } from 'react';
 import PopUpMessage from './PopUpMessage';
 import styles from './App.module.css'
 import {PerformanceCalendar } from "./PerformanceCalendar"
 import { bestScore, totalEntries } from './util/ScoreUtil';
 import { formatDate } from './util/DateUtil';
+import { scoreDescription } from './util/Messages';
 
 export const DEFAULT_SCORE = 50;
 
@@ -54,9 +55,13 @@ const CustomBadge = (props) => {
     let type = props.type;
     let score = props.score 
     return (
+        <>
+        <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{scoreDescription}</Tooltip>}>
         <h1><Badge pill bg={type}>
             Productivity Score: <b>{score}</b>
         </Badge></h1>
+        </OverlayTrigger>
+        </>
     );
 }
 

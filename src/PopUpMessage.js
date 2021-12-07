@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { put, get, getAllItems } from "./ScoreCache"
 import ScoreHistoryTable from "./ScoreHistoryTable";
 import { Highlights } from "./PerformanceForm";
+import { submitTip } from "./util/Messages";
 
 const NAME = "Gagan"
 
@@ -18,11 +19,10 @@ const PopUpMessage = ({ title, message, value }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    let tip = "It is best to submit productivity score at the end of day."
 
     return (
         <>
-            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{tip}</Tooltip>}>
+            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{submitTip}</Tooltip>}>
                 <Button variant="primary" onClick={() => {
                     buildCache(value)
                     handleShow()

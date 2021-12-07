@@ -4,6 +4,7 @@ export class ScoreItem {
         this.score = score; //most recent score
         this.updateCount = updateCount //the times score is updated on this date
         this.timestamp = JSON.stringify(timestamp)
+        this.note = "Empty"
     }
 }
 
