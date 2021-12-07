@@ -55,7 +55,7 @@ const CustomBadge = (props) => {
     let score = props.score 
     return (
         <h1><Badge pill bg={type}>
-            <b>{score}</b>
+            Productivity Score: <b>{score}</b>
         </Badge></h1>
     );
 }
