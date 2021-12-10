@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Col, Container, Row, Table } from "react-bootstrap";
 
 const ScoreItemRow = ({ scoreItem, row }) => {
     return (
@@ -15,11 +15,11 @@ const ScoreItemRow = ({ scoreItem, row }) => {
 
 const ScoreHistoryTable = ({ scoreItems }) => {
     return (
-        <Container fluid="sm">
-            <Table striped bordered hover>
-                <TableHeader></TableHeader>
-                <TableBody scoreItems={scoreItems}></TableBody>
-            </Table>
+        <Container>
+                    <Table striped bordered hover>
+                        <TableHeader></TableHeader>
+                        <TableBody scoreItems={scoreItems}></TableBody>
+                    </Table>
         </Container>
 
     );

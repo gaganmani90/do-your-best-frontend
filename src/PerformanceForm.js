@@ -2,7 +2,7 @@ import { Form, Button, Badge, Container, ProgressBar, OverlayTrigger, Tooltip } 
 import React, { useState } from 'react';
 import PopUpMessage from './PopUpMessage';
 import styles from './App.module.css'
-import {PerformanceCalendar } from "./PerformanceCalendar"
+import { PerformanceCalendar } from "./PerformanceCalendar"
 import { bestScore, totalEntries } from './util/ScoreUtil';
 import { formatDate } from './util/DateUtil';
 import { scoreDescription } from './util/Messages';
@@ -53,14 +53,14 @@ const ScoreBadge = (props) => {
 
 const CustomBadge = (props) => {
     let type = props.type;
-    let score = props.score 
+    let score = props.score
     return (
         <>
-        <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{scoreDescription}</Tooltip>}>
-        <h1><Badge pill bg={type}>
-            Productivity Score: <b>{score}</b>
-        </Badge></h1>
-        </OverlayTrigger>
+            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{scoreDescription}</Tooltip>}>
+                <h1><Badge pill bg={type}>
+                    Productivity Score: <b>{score}</b>
+                </Badge></h1>
+            </OverlayTrigger>
         </>
     );
 }
@@ -91,8 +91,10 @@ const ScoreRange = (props) => {
 export const Highlights = () => {
     return (
         <>
-            Best Score: {<BestScoreProgressBar score={bestScore()} />}
-            <Badge bg="secondary">Total entries: {totalEntries()}</Badge>
+            <Container>
+                        Best Score: {<BestScoreProgressBar score={bestScore()} />}
+                        <Badge bg="secondary">Total entries: {totalEntries()}</Badge>
+            </Container>
         </>
     )
 }
@@ -101,15 +103,15 @@ const BestScoreProgressBar = (props) => {
     let score = props.score
     if (score > 75) {
         return (
-            <ProgressBar variant="success" animated now={score} label={`${score}%`} />
+            <ProgressBar variant="success" now={score} label={`${score}%`} />
         );
     } else if (score > 25 && score <= 75) {
         return (
-            <ProgressBar variant="warning" animated now={score} label={`${score}%`} />
+            <ProgressBar variant="warning" now={score} label={`${score}%`} />
         );
     } else {
         return (
-            <ProgressBar variant="danger" animated now={score} label={`${score}%`} />
+            <ProgressBar variant="danger" now={score} label={`${score}%`} />
         );
     }
 }
