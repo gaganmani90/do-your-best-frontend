@@ -6,9 +6,6 @@ const put = (name, date, score) => {
     var oldItems = JSON.parse(localStorage.getItem(name)) || [];
 
     var newItem = new ScoreItem(date, parseInt(score), 1, new Date())
-
-    
-
     //check if date is already present
     var isDatePresent = false;
     for (let i = 0; i < oldItems.length; i++) {
@@ -21,7 +18,6 @@ const put = (name, date, score) => {
             break;
         }
     }
-    console.log(newItem);
     if (!isDatePresent) {
         oldItems.push(newItem)
     }
