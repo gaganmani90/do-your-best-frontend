@@ -7,3 +7,9 @@ export const formatDate = (today) => {
     today = mm + '/' + dd + '/' + yyyy;
     return today.toString()
 }
+
+//12/12/2020 => 12122020
+export const documentName = (date) => {
+    let arr = date.split("/")
+    return arr[0]+arr[1]+arr[2]
+}

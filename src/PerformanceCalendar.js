@@ -1,11 +1,9 @@
 import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
 import React, { useState } from "react";
-import { put } from "./ScoreCache"
+import { put } from "./persistence/ScoreCache"
 import { Container } from "react-bootstrap";
 import { formatDate } from "./util/DateUtil";
-
-const NAME = "Gagan"
 
 const PerformanceCalendar = ({ setDate }) => {
 
@@ -23,7 +21,6 @@ const PerformanceCalendar = ({ setDate }) => {
                         })
                         onChange()
                         console.log("date changed to: " + selectedDate)
-                        //put(NAME, selectedDate, 50)
                     }
                 } />
         </>

@@ -1,13 +1,14 @@
 import { Modal, Button, Tooltip, OverlayTrigger } from "react-bootstrap";
 import React, { useEffect, useState } from 'react';
-import { put, get, getAllItems } from "./ScoreCache"
+import { put, get, getAllItems } from "./persistence/ScoreCache"
 import ScoreHistoryTable from "./ScoreHistoryTable";
 import { Highlights } from "./PerformanceForm";
 import { submitTip } from "./util/Messages";
-
-const NAME = "Gagan"
+import { useAuth } from "./context/authContext";
 
 const PopUpMessage = ({ title, message, value }) => {
+    const {currentUser} = useAuth()
+
     if (!title) {
         title = "Thank you"
     }
@@ -24,7 +25,7 @@ const PopUpMessage = ({ title, message, value }) => {
         <>
             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{submitTip}</Tooltip>}>
                 <Button variant="primary" onClick={() => {
-                    buildCache(value)
+                    buildCache(currentUser.email, value)
                     handleShow()
                 }} size="lg">Submit</Button>
             </OverlayTrigger>
@@ -44,8 +45,8 @@ const PopUpMessage = ({ title, message, value }) => {
     );
 }
 
-function buildCache(score) {
-    put(NAME, score.date, score.points)
+function buildCache(email, score) {
+    put(email, score.date, score.points)
 }
 
 

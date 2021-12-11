@@ -1,4 +1,4 @@
-import { getAllItems } from "../ScoreCache";
+import { getAllItems } from "../persistence/ScoreCache";
 
 export const bestScore = () => {
     var scoreItems = getAllItems();

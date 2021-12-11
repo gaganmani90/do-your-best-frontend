@@ -1,9 +1,14 @@
-import ScoreItem from "./model/ScoreItem";
+import ScoreItem from "../model/ScoreItem";
+import { GetUserEmail } from "../util/UserUtil";
+import { pushScore } from "./ScoreCollection";
+
 
 const put = (name, date, score) => {
     var oldItems = JSON.parse(localStorage.getItem(name)) || [];
 
     var newItem = new ScoreItem(date, parseInt(score), 1, new Date())
+
+    
 
     //check if date is already present
     var isDatePresent = false;
@@ -11,14 +16,18 @@ const put = (name, date, score) => {
         var item = oldItems[i];
         if (item.date == date) {
             item.score = newItem.score;
-            item.updateCount++
+            item.updateCount++;
+            newItem.updateCount++;
             isDatePresent = true;
             break;
         }
     }
+    console.log(newItem);
     if (!isDatePresent) {
         oldItems.push(newItem)
     }
+    pushScore(name, date, newItem); //DB call
+
     localStorage.setItem(name, JSON.stringify(oldItems));
 }
 
@@ -37,7 +46,7 @@ const get = (name, date) => {
 
 const getAllItems = () => {
     var scoreItems = []
-    
+
     var items = JSON.parse(localStorage.getItem("Gagan")) || []
 
     for (let i = 0; i < items.length; i++) {
