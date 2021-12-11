@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Card, Button, Alert } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 
 function Logout() {
