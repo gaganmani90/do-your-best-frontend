@@ -1,5 +1,4 @@
 import ScoreItem from "../model/ScoreItem";
-import { GetUserEmail } from "../util/UserUtil";
 import { pushScore } from "./ScoreCollection";
 
 
@@ -17,7 +16,7 @@ const put = (name, date, score) => {
         if (item.date == date) {
             item.score = newItem.score;
             item.updateCount++;
-            newItem.updateCount++;
+            newItem.updateCount = item.updateCount;
             isDatePresent = true;
             break;
         }
