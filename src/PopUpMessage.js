@@ -1,11 +1,11 @@
-import { Modal, Button, Tooltip, OverlayTrigger } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import React, { useState } from 'react'
-import { put, getAllItems } from './persistence/ScoreCache'
 import ScoreHistoryTable from './ScoreHistoryTable'
 import { Highlights } from './PerformanceForm'
-import { submitTip } from './util/Messages'
 import { useAuth } from './context/authContext'
 import PropTypes from 'prop-types'
+import { SubmitScoreButton } from './components/SubmitScoreButton'
+import { getAllItems } from './persistence/ScoreCache'
 
 const PopUpMessage = ({ title, message, value }) => {
   const { currentUser } = useAuth()
@@ -23,12 +23,7 @@ const PopUpMessage = ({ title, message, value }) => {
 
   return (
         <>
-            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{submitTip}</Tooltip>}>
-                <Button variant="primary" onClick={() => {
-                  buildCache(currentUser.email, value)
-                  handleShow()
-                }} size="lg">Submit</Button>
-            </OverlayTrigger>
+            <SubmitScoreButton email={currentUser.email} scoreItem={value} handleShow={handleShow} />
 
             <ScoreHistoryTable scoreItems={getAllItems(currentUser.email)} />
             <Highlights />
@@ -49,10 +44,6 @@ PopUpMessage.propTypes = {
   title: PropTypes.string,
   message: PropTypes.string,
   value: PropTypes.object.isRequired
-}
-
-function buildCache (email, score) {
-  put(email, score.date, score.points)
 }
 
 export default PopUpMessage
