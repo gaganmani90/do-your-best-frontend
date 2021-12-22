@@ -21,6 +21,6 @@ module.exports = {
   ],
   ignorePatterns: ['*.test*'],
   rules: {
-    'no-use-before-define': 'off',
+    'no-use-before-define': 'off'
   }
 }

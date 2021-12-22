@@ -1,29 +1,29 @@
-import React, { useRef, useState } from "react";
-import { Form, Card, Button, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useAuth } from "../context/authContext";
+import React, { useRef, useState } from 'react'
+import { Form, Card, Button, Alert } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../context/authContext'
 
-function ForgetPassword() {
-  const emailRef = useRef(null);
-  const { resetPassword } = useAuth();
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+function ForgetPassword () {
+  const emailRef = useRef(null)
+  const { resetPassword } = useAuth()
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      setMessage("");
-      setLoading(true);
-      setError("");
-      await resetPassword(emailRef.current.value);
-      setMessage("check your inbox for futher instructions");
+      setMessage('')
+      setLoading(true)
+      setError('')
+      await resetPassword(emailRef.current.value)
+      setMessage('check your inbox for futher instructions')
     } catch (error) {
-      setError("failed to reset password");
+      setError('failed to reset password')
     }
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   return (
     <>
@@ -50,7 +50,7 @@ function ForgetPassword() {
         Not registered yet? <Link to="/signup">Sign Up</Link>
       </div>
     </>
-  );
+  )
 }
 
-export default ForgetPassword;
+export default ForgetPassword

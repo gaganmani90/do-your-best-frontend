@@ -1,8 +1,8 @@
-import { Fragment } from "react";
-import { Col, Container, Row, Table } from "react-bootstrap";
+import React, { Fragment } from 'react'
+import { Col, Container, Row, Table } from 'react-bootstrap'
 
 const ScoreItemRow = ({ scoreItem, row }) => {
-    return (
+  return (
         <tr key={row}>
             <td>{row}</td>
             <td>{scoreItem.date} </td>
@@ -10,11 +10,11 @@ const ScoreItemRow = ({ scoreItem, row }) => {
             <td>{scoreItem.updateCount} </td>
             <td>{scoreItem.timestamp} </td>
         </tr>
-    )
+  )
 }
 
 const ScoreHistoryTable = ({ scoreItems }) => {
-    return (
+  return (
         <Container>
                     <Table striped bordered hover>
                         <TableHeader></TableHeader>
@@ -22,25 +22,25 @@ const ScoreHistoryTable = ({ scoreItems }) => {
                     </Table>
         </Container>
 
-    );
+  )
 }
 
 const TableBody = ({ scoreItems }) => {
-    return (
+  return (
         <tbody key="table-body">
             {scoreItems.map((scoreItem, i) => {
-                return (
+              return (
                     <Fragment key={i}>
                         <ScoreItemRow scoreItem={scoreItem} row={i + 1}></ScoreItemRow>
                     </Fragment>
-                );
+              )
             })}
         </tbody>
-    )
+  )
 }
 
 const TableHeader = () => {
-    return (
+  return (
         <thead className="thead-dark" key="header-1">
             <tr key="header-0">
                 <th>#</th>
@@ -50,7 +50,7 @@ const TableHeader = () => {
                 <th>Most recent Update</th>
             </tr>
         </thead>
-    );
+  )
 }
 
-export default ScoreHistoryTable;
+export default ScoreHistoryTable

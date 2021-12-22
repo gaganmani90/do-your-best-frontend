@@ -1,9 +1,9 @@
 import React from 'react'
-import { Navbar,Nav,Container,NavbarBrand } from 'react-bootstrap'
+import { Navbar, Nav, Container, NavbarBrand } from 'react-bootstrap'
 
 const DYBNavigation = () => {
-    return (
-        <Navbar collapseOnSelect fixed='top' expand='sm' bg='primary' variant='dark' style={{ backgroundColor: "#071740", position: "sticky" }}>
+  return (
+        <Navbar collapseOnSelect fixed='top' expand='sm' bg='primary' variant='dark' style={{ backgroundColor: '#071740', position: 'sticky' }}>
             <Container>
                 <NavbarBrand href='/'>Do Your Best</NavbarBrand>
                 <Navbar.Toggle aria-controls='responsive-navbar-nav' />
@@ -16,7 +16,7 @@ const DYBNavigation = () => {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-    );
+  )
 }
 
-export default DYBNavigation;
+export default DYBNavigation

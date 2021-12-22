@@ -1,29 +1,29 @@
-import React, { useRef, useState } from "react";
-import { Form, Card, Button, Alert } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/authContext";
+import React, { useRef, useState } from 'react'
+import { Form, Card, Button, Alert } from 'react-bootstrap'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/authContext'
 
-function Login() {
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-  const { login } = useAuth();
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // hook for redirecting to routes
+function Login () {
+  const emailRef = useRef(null)
+  const passwordRef = useRef(null)
+  const { login } = useAuth()
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate() // hook for redirecting to routes
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      setLoading(true);
-      setError("");
-      await login(emailRef.current.value, passwordRef.current.value);
-      navigate("/"); // redirecting to dashboard
+      setLoading(true)
+      setError('')
+      await login(emailRef.current.value, passwordRef.current.value)
+      navigate('/') // redirecting to dashboard
     } catch (error) {
-      setError("failed to Log in");
+      setError('failed to Log in')
     }
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   return (
     <>
@@ -57,7 +57,7 @@ function Login() {
         Not registered yet? <Link to="/signup">Sign Up</Link>
       </div>
     </>
-  );
+  )
 }
 
-export default Login;
+export default Login

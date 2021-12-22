@@ -18,8 +18,7 @@ export const documentName = (date: String) : string => {
 // 12/12/2020 => 2020/12/12 [year, month, date]
 export const splitDates = (date: String): MyDate => {
   const arr = date.split('/')
-  const myDate = new MyDate(arr[1], arr[0], arr[2])
-  return myDate
+  return new MyDate(arr[1], arr[0], arr[2])
 }
 
 class MyDate {

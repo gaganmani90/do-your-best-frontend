@@ -1,24 +1,24 @@
-import { Form, Button, Badge, Container, ProgressBar, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import React, { useState } from 'react';
-import PopUpMessage from './PopUpMessage';
+import { Form, Button, Badge, Container, ProgressBar, OverlayTrigger, Tooltip } from 'react-bootstrap'
+import React, { useState } from 'react'
+import PopUpMessage from './PopUpMessage'
 import styles from './App.module.css'
-import { PerformanceCalendar } from "./PerformanceCalendar"
-import { bestScore, totalEntries } from './util/ScoreUtil';
-import { formatDate } from './util/DateUtil';
-import { scoreDescription } from './util/Messages';
-import { useAuth } from './context/authContext';
+import { PerformanceCalendar } from './PerformanceCalendar'
+import { bestScore, totalEntries } from './util/ScoreUtil'
+import { formatDate } from './util/DateUtil'
+import { scoreDescription } from './util/Messages'
+import { useAuth } from './context/authContext'
 
-export const DEFAULT_SCORE = 50;
+export const DEFAULT_SCORE = 50
 
 const PerformanceForm = ({ day }) => {
-    if (!day) {
-        day = formatDate(new Date())
-    }
-    const [value, setValue] = useState({
-        date: day,
-        points: DEFAULT_SCORE
-    });
-    return (
+  if (!day) {
+    day = formatDate(new Date())
+  }
+  const [value, setValue] = useState({
+    date: day,
+    points: DEFAULT_SCORE
+  })
+  return (
         <>
             <Container>
                 <div className={styles.center} >
@@ -29,33 +29,32 @@ const PerformanceForm = ({ day }) => {
                 </div>
             </Container>
         </>
-    );
+  )
 }
 
-
 const ScoreBadge = (props) => {
-    var value = props.value
-    let score = value.points;
-    console.log("scorebadge:" + score)
-    if (score > 75) {
-        return (
+  const value = props.value
+  const score = value.points
+  console.log('scorebadge:' + score)
+  if (score > 75) {
+    return (
             <CustomBadge type="success" score={score} />
-        );
-    } else if (score > 25 && score <= 75) {
-        return (
+    )
+  } else if (score > 25 && score <= 75) {
+    return (
             <CustomBadge type="warning" score={score} />
-        );
-    } else {
-        return (
+    )
+  } else {
+    return (
             <CustomBadge type="danger" score={score} />
-        );
-    }
+    )
+  }
 }
 
 const CustomBadge = (props) => {
-    let type = props.type;
-    let score = props.score
-    return (
+  const type = props.type
+  const score = props.score
+  return (
         <>
             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{scoreDescription}</Tooltip>}>
                 <h1><Badge pill bg={type}>
@@ -63,60 +62,60 @@ const CustomBadge = (props) => {
                 </Badge></h1>
             </OverlayTrigger>
         </>
-    );
+  )
 }
 
 /**
  * Score Range component
- * @param {*} param0 
- * @returns 
+ * @param {*} param0
+ * @returns
  */
 const ScoreRange = (props) => {
-    let value = props.value
-    let setValue = props.setValue
-    var score = value.points;
-    return (
+  const value = props.value
+  const setValue = props.setValue
+  const score = value.points
+  return (
         <Form.Range value={score} onChange={
             e => {
-                var newScore = e.target.value
-                console.log("slider change to: " + newScore + " on date: " + value.date)
-                setValue({
-                    points: newScore,
-                    date: value.date
-                })
+              const newScore = e.target.value
+              console.log('slider change to: ' + newScore + ' on date: ' + value.date)
+              setValue({
+                points: newScore,
+                date: value.date
+              })
             }
         } />
-    );
+  )
 }
 
 export const Highlights = () => {
-    const {currentUser} = useAuth()
-    const email = currentUser.email;
-    return (
+  const { currentUser } = useAuth()
+  const email = currentUser.email
+  return (
         <>
             <Container>
                         Best Score: {<BestScoreProgressBar score={bestScore(email)} />}
                         <Badge bg="secondary">Total entries: {totalEntries(email)}</Badge>
             </Container>
         </>
-    )
+  )
 }
 
 const BestScoreProgressBar = (props) => {
-    let score = props.score
-    if (score > 75) {
-        return (
+  const score = props.score
+  if (score > 75) {
+    return (
             <ProgressBar variant="success" now={score} label={`${score}%`} />
-        );
-    } else if (score > 25 && score <= 75) {
-        return (
+    )
+  } else if (score > 25 && score <= 75) {
+    return (
             <ProgressBar variant="warning" now={score} label={`${score}%`} />
-        );
-    } else {
-        return (
+    )
+  } else {
+    return (
             <ProgressBar variant="danger" now={score} label={`${score}%`} />
-        );
-    }
+    )
+  }
 }
 
-export default PerformanceForm;
+export default PerformanceForm
