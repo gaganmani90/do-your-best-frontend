@@ -34,7 +34,7 @@ const PerformanceForm = ({ day }) => {
 }
 
 PerformanceForm.propTypes = {
-  day: PropTypes.string.isRequired
+  day: PropTypes.string
 }
 
 const ScoreBadge = (props) => {
@@ -57,8 +57,8 @@ const ScoreBadge = (props) => {
 }
 
 ScoreBadge.propTypes = {
-  value: PropTypes.string.isRequired,
-  points: PropTypes.string.isRequired
+  value: PropTypes.object.isRequired,
+  points: PropTypes.string
 }
 
 const CustomBadge = (props) => {
@@ -77,7 +77,7 @@ const CustomBadge = (props) => {
 
 CustomBadge.propTypes = {
   type: PropTypes.string.isRequired,
-  score: PropTypes.string.isRequired
+  score: PropTypes.number.isRequired
 }
 
 /**
@@ -104,9 +104,9 @@ const ScoreRange = (props) => {
 }
 
 ScoreRange.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.object.isRequired,
   setValue: PropTypes.func.isRequired,
-  points: PropTypes.string.isRequired
+  points: PropTypes.string
 }
 
 export const Highlights = () => {
@@ -140,7 +140,7 @@ const BestScoreProgressBar = (props) => {
 }
 
 BestScoreProgressBar.propTypes = {
-  score: PropTypes.string.isRequired
+  score: PropTypes.number.isRequired
 }
 
 export default PerformanceForm

@@ -16,7 +16,7 @@ const ScoreItemRow = ({ scoreItem, row }) => {
 
 ScoreItemRow.propTypes = {
   scoreItem: PropTypes.object.isRequired,
-  row: PropTypes.string.isRequired
+  row: PropTypes.number.isRequired
 }
 
 const ScoreHistoryTable = ({ scoreItems }) => {
@@ -32,7 +32,7 @@ const ScoreHistoryTable = ({ scoreItems }) => {
 }
 
 ScoreHistoryTable.propTypes = {
-  scoreItems: PropTypes.object.isRequired
+  scoreItems: PropTypes.array.isRequired
 }
 
 const TableBody = ({ scoreItems }) => {
@@ -50,7 +50,7 @@ const TableBody = ({ scoreItems }) => {
 }
 
 TableBody.propTypes = {
-  scoreItems: PropTypes.object.isRequired
+  scoreItems: PropTypes.array.isRequired
 }
 
 const TableHeader = () => {

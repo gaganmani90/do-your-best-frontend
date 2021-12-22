@@ -46,9 +46,9 @@ const PopUpMessage = ({ title, message, value }) => {
 }
 
 PopUpMessage.propTypes = {
-  title: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired
+  title: PropTypes.string,
+  message: PropTypes.string,
+  value: PropTypes.object.isRequired
 }
 
 function buildCache (email, score) {

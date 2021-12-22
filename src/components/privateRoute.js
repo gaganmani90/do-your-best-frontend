@@ -9,7 +9,7 @@ function PrivateRoute ({ component: Component, ...rest }) {
   return currentUser ? <Outlet /> : <Navigate to="/login" />
 }
 PrivateRoute.propTypes = {
-  component: PropTypes.node.isRequired
+  component: PropTypes.node
 }
 
 export default PrivateRoute
