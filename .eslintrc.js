@@ -19,6 +19,8 @@ module.exports = {
     'react',
     '@typescript-eslint'
   ],
+  ignorePatterns: ['*.test*'],
   rules: {
+    'no-use-before-define': 'off',
   }
 }
