@@ -9,7 +9,7 @@ const put = (name, date, score) => {
   let isDatePresent = false
   for (let i = 0; i < oldItems.length; i++) {
     const item = oldItems[i]
-    if (item.date == date) {
+    if (item.date === date) {
       item.score = newItem.score
       item.updateCount++
       newItem.updateCount = item.updateCount
@@ -29,7 +29,7 @@ const get = (name, date) => {
   const scoreObj = JSON.parse(localStorage.getItem(name))
   if (scoreObj) {
     scoreObj.array.forEach(element => {
-      if (element.date == date) {
+      if (element.date === date) {
         return element.score
       }
     })

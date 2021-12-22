@@ -1,4 +1,4 @@
-import { doc, setDoc, getDoc, getDocs, collection } from 'firebase/firestore'
+import { doc, setDoc, getDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 import ScoreItem from '../model/ScoreItem'
 import { formatDate, splitDates } from '../util/DateUtil'
@@ -77,6 +77,6 @@ export const pushScore = (email: string, scoreItem: ScoreItem) => {
 export const getAllScoreItems = (email: string): ScoreItem[] => {
   const scoreItems: ScoreItem[] = []
   const docData = ScoreCollectionUtil.getDocumentData(email, '12/11/2021')
-
+  console.log(docData) // TODO: remove
   return scoreItems
 }

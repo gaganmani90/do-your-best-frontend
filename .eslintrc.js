@@ -21,6 +21,8 @@ module.exports = {
   ],
   ignorePatterns: ['*.test*'],
   rules: {
-    'no-use-before-define': 'off'
+    'no-use-before-define': 'off',
+    // suppress errors for missing 'import React' in files
+    'react/react-in-jsx-scope': 'off'
   }
 }

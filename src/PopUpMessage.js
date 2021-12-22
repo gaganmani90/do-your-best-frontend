@@ -1,10 +1,11 @@
 import { Modal, Button, Tooltip, OverlayTrigger } from 'react-bootstrap'
-import React, { useEffect, useState } from 'react'
-import { put, get, getAllItems } from './persistence/ScoreCache'
+import React, { useState } from 'react'
+import { put, getAllItems } from './persistence/ScoreCache'
 import ScoreHistoryTable from './ScoreHistoryTable'
 import { Highlights } from './PerformanceForm'
 import { submitTip } from './util/Messages'
 import { useAuth } from './context/authContext'
+import PropTypes from 'prop-types'
 
 const PopUpMessage = ({ title, message, value }) => {
   const { currentUser } = useAuth()
@@ -12,7 +13,6 @@ const PopUpMessage = ({ title, message, value }) => {
   if (!title) {
     title = 'Thank you'
   }
-  console.log(value.date + ' popupmessage')
   if (!message) {
     message = 'Your self evaluation score is ' + value.points +
             ' for date:' + value.date + ' !'
@@ -43,6 +43,12 @@ const PopUpMessage = ({ title, message, value }) => {
             </Modal>
         </>
   )
+}
+
+PopUpMessage.propTypes = {
+  title: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired
 }
 
 function buildCache (email, score) {

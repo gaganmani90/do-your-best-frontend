@@ -1,4 +1,4 @@
-import { Form, Button, Badge, Container, ProgressBar, OverlayTrigger, Tooltip } from 'react-bootstrap'
+import { Form, Badge, Container, ProgressBar, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import React, { useState } from 'react'
 import PopUpMessage from './PopUpMessage'
 import styles from './App.module.css'
@@ -7,6 +7,7 @@ import { bestScore, totalEntries } from './util/ScoreUtil'
 import { formatDate } from './util/DateUtil'
 import { scoreDescription } from './util/Messages'
 import { useAuth } from './context/authContext'
+import PropTypes from 'prop-types'
 
 export const DEFAULT_SCORE = 50
 
@@ -32,6 +33,10 @@ const PerformanceForm = ({ day }) => {
   )
 }
 
+PerformanceForm.propTypes = {
+  day: PropTypes.string.isRequired
+}
+
 const ScoreBadge = (props) => {
   const value = props.value
   const score = value.points
@@ -51,6 +56,11 @@ const ScoreBadge = (props) => {
   }
 }
 
+ScoreBadge.propTypes = {
+  value: PropTypes.string.isRequired,
+  points: PropTypes.string.isRequired
+}
+
 const CustomBadge = (props) => {
   const type = props.type
   const score = props.score
@@ -63,6 +73,11 @@ const CustomBadge = (props) => {
             </OverlayTrigger>
         </>
   )
+}
+
+CustomBadge.propTypes = {
+  type: PropTypes.string.isRequired,
+  score: PropTypes.string.isRequired
 }
 
 /**
@@ -86,6 +101,12 @@ const ScoreRange = (props) => {
             }
         } />
   )
+}
+
+ScoreRange.propTypes = {
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
+  points: PropTypes.string.isRequired
 }
 
 export const Highlights = () => {
@@ -116,6 +137,10 @@ const BestScoreProgressBar = (props) => {
             <ProgressBar variant="danger" now={score} label={`${score}%`} />
     )
   }
+}
+
+BestScoreProgressBar.propTypes = {
+  score: PropTypes.string.isRequired
 }
 
 export default PerformanceForm

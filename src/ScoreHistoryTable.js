@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
-import { Col, Container, Row, Table } from 'react-bootstrap'
+import { Container, Table } from 'react-bootstrap'
+import PropTypes from 'prop-types'
 
 const ScoreItemRow = ({ scoreItem, row }) => {
   return (
@@ -11,6 +12,11 @@ const ScoreItemRow = ({ scoreItem, row }) => {
             <td>{scoreItem.timestamp} </td>
         </tr>
   )
+}
+
+ScoreItemRow.propTypes = {
+  scoreItem: PropTypes.object.isRequired,
+  row: PropTypes.string.isRequired
 }
 
 const ScoreHistoryTable = ({ scoreItems }) => {
@@ -25,6 +31,10 @@ const ScoreHistoryTable = ({ scoreItems }) => {
   )
 }
 
+ScoreHistoryTable.propTypes = {
+  scoreItems: PropTypes.object.isRequired
+}
+
 const TableBody = ({ scoreItems }) => {
   return (
         <tbody key="table-body">
@@ -37,6 +47,10 @@ const TableBody = ({ scoreItems }) => {
             })}
         </tbody>
   )
+}
+
+TableBody.propTypes = {
+  scoreItems: PropTypes.object.isRequired
 }
 
 const TableHeader = () => {

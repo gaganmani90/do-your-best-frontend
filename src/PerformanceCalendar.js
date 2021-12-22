@@ -1,9 +1,8 @@
 import 'react-datetime/css/react-datetime.css'
 import Datetime from 'react-datetime'
 import React, { useState } from 'react'
-import { put } from './persistence/ScoreCache'
-import { Container } from 'react-bootstrap'
 import { formatDate } from './util/DateUtil'
+import PropTypes from 'prop-types'
 
 const PerformanceCalendar = ({ setDate }) => {
   const [value, onChange] = useState(new Date())
@@ -24,6 +23,10 @@ const PerformanceCalendar = ({ setDate }) => {
                 } />
         </>
   )
+}
+
+PerformanceCalendar.propTypes = {
+  setDate: PropTypes.func.isRequired
 }
 
 export { PerformanceCalendar }

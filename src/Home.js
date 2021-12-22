@@ -1,8 +1,6 @@
 import PerformanceForm from './PerformanceForm'
 import { useAuth } from './context/authContext'
 import Logout from './components/logout'
-import { doc, setDoc } from 'firebase/firestore'
-import { db } from './firebase'
 
 const Home = () => {
   const { currentUser } = useAuth()
@@ -12,12 +10,6 @@ const Home = () => {
             <Logout />
         </>
   )
-}
-
-async function setDocument (currentUser) {
-  console.log('writing data')
-  const userDoc = doc(db, 'users', currentUser.email)
-  await setDoc(userDoc, { isUser: true })
 }
 
 export default Home

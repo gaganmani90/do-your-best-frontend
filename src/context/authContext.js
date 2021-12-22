@@ -5,8 +5,13 @@ import {
   , signInWithEmailAndPassword, signOut,
   sendPasswordResetEmail
 } from 'firebase/auth'
+import PropTypes from 'prop-types'
 
 const AuthContext = React.createContext()
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired
+}
 
 export function AuthProvider ({ children }) {
   const [loading, setLoading] = useState(true)

@@ -12,9 +12,11 @@ function Logout () {
     setError('')
     try {
       await logout()
+      console.log(currentUser.email + ' is successfully logged out')
       navigate('/login')
-    } catch (error) {
+    } catch (err) {
       setError('cannot logout')
+      console.log('logout error: ' + error)
     }
   }
 
