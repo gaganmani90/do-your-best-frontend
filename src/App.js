@@ -5,10 +5,10 @@ import DYBNavigation from './DYBNavigation'
 import { Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import { Container } from 'react-bootstrap'
-import Signup from './components/signup'
-import Login from './components/login'
+import Signup from './components/creds/signup'
+import Login from './components/creds/login'
 import PrivateRoute from './components/privateRoute'
-import ForgetPassword from './components/forgetpassword'
+import ForgetPassword from './components/creds/forgetpassword'
 
 function App () {
   return (

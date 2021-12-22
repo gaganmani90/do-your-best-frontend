@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/authContext'
+import { useAuth } from '../../context/authContext'
 
 function Logout () {
   const [error, setError] = useState('')
