@@ -30,7 +30,7 @@ const TableBody = ({ scoreItems }) => {
         <tbody key="table-body">
             {scoreItems.map((scoreItem, i) => {
                 return (
-                    <Fragment>
+                    <Fragment key={i}>
                         <ScoreItemRow scoreItem={scoreItem} row={i + 1}></ScoreItemRow>
                     </Fragment>
                 );
