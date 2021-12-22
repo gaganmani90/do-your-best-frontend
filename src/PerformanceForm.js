@@ -6,6 +6,7 @@ import { PerformanceCalendar } from "./PerformanceCalendar"
 import { bestScore, totalEntries } from './util/ScoreUtil';
 import { formatDate } from './util/DateUtil';
 import { scoreDescription } from './util/Messages';
+import { useAuth } from './context/authContext';
 
 export const DEFAULT_SCORE = 50;
 
@@ -89,11 +90,13 @@ const ScoreRange = (props) => {
 }
 
 export const Highlights = () => {
+    const {currentUser} = useAuth()
+    const email = currentUser.email;
     return (
         <>
             <Container>
-                        Best Score: {<BestScoreProgressBar score={bestScore()} />}
-                        <Badge bg="secondary">Total entries: {totalEntries()}</Badge>
+                        Best Score: {<BestScoreProgressBar score={bestScore(email)} />}
+                        <Badge bg="secondary">Total entries: {totalEntries(email)}</Badge>
             </Container>
         </>
     )

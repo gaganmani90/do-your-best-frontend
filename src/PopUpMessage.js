@@ -30,7 +30,7 @@ const PopUpMessage = ({ title, message, value }) => {
                 }} size="lg">Submit</Button>
             </OverlayTrigger>
 
-            <ScoreHistoryTable scoreItems={getAllItems()} />
+            <ScoreHistoryTable scoreItems={getAllItems(currentUser.email)} />
             <Highlights />
 
             <Modal show={show} onHide={handleClose}>

@@ -1,5 +1,5 @@
 import ScoreItem from "../model/ScoreItem";
-import { pushScore } from "./ScoreCollection";
+import { getAllScoreItems, pushScore } from "./ScoreCollection";
 
 
 const put = (name, date, score) => {
@@ -21,7 +21,7 @@ const put = (name, date, score) => {
     if (!isDatePresent) {
         oldItems.push(newItem)
     }
-    pushScore(name, date, newItem); //DB call
+    pushScore(name, newItem); //DB call
 
     localStorage.setItem(name, JSON.stringify(oldItems));
 }
@@ -39,16 +39,21 @@ const get = (name, date) => {
     return 0
 }
 
-const getAllItems = () => {
+const getAllItems = (email) => {
+    console.log("ScoreCache:getAllItems().email:"+email);
+
     var scoreItems = []
 
-    var items = JSON.parse(localStorage.getItem("Gagan")) || []
+    var items = JSON.parse(localStorage.getItem(email)) || []
 
     for (let i = 0; i < items.length; i++) {
         let item = items[i];
         let scoreItemObj = new ScoreItem(item.date, item.score, item.updateCount)
         scoreItems.push(scoreItemObj)
     }
+
+    //TODO: only this should be called in ScoreHistoryTable, 
+    getAllScoreItems(email)
 
     return scoreItems;
 }
