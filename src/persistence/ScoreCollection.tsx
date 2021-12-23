@@ -1,7 +1,7 @@
 import { doc, setDoc, getDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 import ScoreItem from '../model/ScoreItem'
-import { formatDate, splitDates } from '../util/DateUtil'
+import { splitDates } from '../util/DateUtil'
 
 class ScoreCollectionUtil {
   private static getKey (email: string): string {
@@ -23,10 +23,6 @@ class ScoreCollectionUtil {
     return docName.day.toString()
   }
 
-  private static getYearKeyFromDate (date: Date) {
-    return this.getYearKey(formatDate(date))
-  }
-
   public static getRootDocRef (email: string) {
     return doc(db, ScoreCollectionUtil.getKey(email))
   }
@@ -36,6 +32,19 @@ class ScoreCollectionUtil {
       ScoreCollectionUtil.getMonthKey(date), ScoreCollectionUtil.getDayKey(date))
 
     return docRef
+  }
+
+  // TODO: fetch data by year
+  public static async getDocumentDataByYear (email: string, year: string) {
+    const docRef = doc(db, ScoreCollectionUtil.getKey(email), year)
+    const docSnap = await getDoc(docRef)
+
+    if (docSnap.exists()) {
+      console.log('getDocumentDataByYear: ' + docSnap.data())
+    } else {
+      console.warn('getDocumentDataByYear: no data')
+    }
+    return docSnap.data()
   }
 
   /**
@@ -48,7 +57,7 @@ class ScoreCollectionUtil {
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
-      // console.log("Document data:", docSnap.data());
+      console.log('Document data:', docSnap.data())
     } else {
       // doc.data() will be undefined in this case
       console.log('No such document!')
@@ -76,7 +85,7 @@ export const pushScore = (email: string, scoreItem: ScoreItem) => {
  */
 export const getAllScoreItems = (email: string): ScoreItem[] => {
   const scoreItems: ScoreItem[] = []
-  const docData = ScoreCollectionUtil.getDocumentData(email, '12/11/2021')
-  console.log(docData) // TODO: remove
+  // const docData = ScoreCollectionUtil.getDocumentData(email, '12/11/2021')
+  ScoreCollectionUtil.getDocumentDataByYear(email, '2021')
   return scoreItems
 }

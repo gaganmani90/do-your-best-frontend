@@ -20,13 +20,24 @@ const PerformanceCalendar = ({ setDate }) => {
                       onChange()
                       console.log('date changed to: ' + selectedDate)
                     }
-                } />
+                } defaultValue={new Date()} isValidDate={isValidDate}
+                dateFormat={'DD-MMM-YYYY'}/>
         </>
   )
 }
 
 PerformanceCalendar.propTypes = {
   setDate: PropTypes.func.isRequired
+}
+
+/**
+ * Cannot enter for future dates
+ * @param current
+ * @returns {*}
+ */
+const isValidDate = (current) => {
+  const today = Datetime.moment()
+  return current.isBefore(today)
 }
 
 export { PerformanceCalendar }

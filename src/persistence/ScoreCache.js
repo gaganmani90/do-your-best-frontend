@@ -38,8 +38,6 @@ const get = (name, date) => {
 }
 
 const getAllItems = (email) => {
-  console.log('ScoreCache:getAllItems().email:' + email)
-
   const scoreItems = []
 
   const items = JSON.parse(localStorage.getItem(email)) || []
