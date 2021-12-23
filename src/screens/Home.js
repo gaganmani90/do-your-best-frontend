@@ -1,6 +1,6 @@
-import PerformanceForm from './PerformanceForm'
-import { useAuth } from './context/authContext'
-import Logout from './components/creds/logout'
+import PerformanceForm from '../PerformanceForm'
+import { useAuth } from '../context/authContext'
+import Logout from '../components/creds/logout'
 
 const Home = () => {
   const { currentUser } = useAuth()

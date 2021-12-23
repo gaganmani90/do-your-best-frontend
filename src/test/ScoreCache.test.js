@@ -1,4 +1,4 @@
-import {get, put} from "../ScoreCache"
+import {get, put} from "../persistence/ScoreCache"
 
 beforeEach(() => {
     localStorage.clear()
