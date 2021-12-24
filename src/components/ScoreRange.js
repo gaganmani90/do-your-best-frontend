@@ -17,7 +17,7 @@ export const ScoreRange = (props) => {
               const newScore = e.target.value
               console.log('slider change to: ' + newScore + ' on date: ' + value.date)
               setValue({
-                points: newScore,
+                points: parseInt(newScore),
                 date: value.date
               })
             }

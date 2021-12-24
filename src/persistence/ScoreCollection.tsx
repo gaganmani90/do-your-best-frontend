@@ -1,6 +1,6 @@
 import { doc, setDoc, getDoc } from 'firebase/firestore'
 import { db } from '../firebase'
-import ScoreItem from '../model/ScoreItem'
+import { ScoreItem } from '../model/ScoreItem'
 import { splitDates } from '../util/DateUtil'
 
 class ScoreCollectionUtil {
