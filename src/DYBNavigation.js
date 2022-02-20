@@ -17,14 +17,22 @@ const DYBNavigation = () => {
                         <Nav.Link href='/ContactUs'>ContactUs</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
-                <Navbar.Collapse className="justify-content-end">
+                <Navbar.Collapse className="justify-content-end" appear={currentUser}>
                     <Navbar.Text>
-                        Signed in as: {currentUser.email}
+                        {getUserEmailText(currentUser)}
                     </Navbar.Text>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
   )
+}
+
+function getUserEmailText (currentUser) {
+  let text = ''
+  if (currentUser) {
+    text = 'Signed in as: ' + currentUser.email
+  }
+  return text
 }
 
 export default DYBNavigation
