@@ -1,43 +1,38 @@
 import 'react-datetime/css/react-datetime.css'
-import Datetime from 'react-datetime'
+import DatePicker from 'react-datepicker'
 import React, { useState } from 'react'
 import { formatDate } from './util/DateUtil'
 import PropTypes from 'prop-types'
+import 'react-datepicker/dist/react-datepicker.css'
+import moment from 'moment'
 
+// TODO: Fix UI alignment of calendar: HIGH
 const PerformanceCalendar = ({ setDate }) => {
-  const [value, onChange] = useState(new Date())
+  const [selectedDate, setSelectedDate] = useState(new Date())
   // const [score, setScore] = useState(JSON.parse(date))
 
   return (
         <>
-                <Datetime value={value} onChange={
-                    moment => {
-                      const selectedDate = formatDate(moment.toDate())
-                      setDate({
-                        points: 50,
-                        date: selectedDate
-                      })
-                      onChange()
-                      console.log('date changed to: ' + selectedDate)
-                    }
-                } defaultValue={new Date()} isValidDate={isValidDate}
-                dateFormat={'DD-MMM-YYYY'}/>
+            <DatePicker selected={selectedDate} onChange={
+                date => {
+                  const formattedDate = formatDate(date)
+                  setDate({
+                    points: 50,
+                    date: formattedDate
+                  })
+                  setSelectedDate(date)
+                  console.log('date changed to: ' + formattedDate)
+                }
+            } defaultValue={new Date()}
+                        maxDate={moment().toDate()}
+                        highlightDates={[new Date()]}
+            />
         </>
   )
 }
 
 PerformanceCalendar.propTypes = {
   setDate: PropTypes.func.isRequired
-}
-
-/**
- * Cannot enter for future dates
- * @param current
- * @returns {*}
- */
-const isValidDate = (current) => {
-  const today = Datetime.moment()
-  return current.isBefore(today)
 }
 
 export { PerformanceCalendar }

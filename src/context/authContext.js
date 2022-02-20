@@ -35,10 +35,14 @@ export function AuthProvider ({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       // added event listener
-      setCurrentUser(user)
+      // TODO: Fix error during login: Error: Objects are not valid as a React child
+      console.log('loggeed in user: ' + JSON.stringify(user))
+      if (user) {
+        setCurrentUser(user)
+      }
       setLoading(false)
     })
-    return unsubscribe
+    return () => unsubscribe()
   }, [])
 
   const [currentUser, setCurrentUser] = useState()

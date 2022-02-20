@@ -19,7 +19,7 @@ const DYBNavigation = () => {
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text>
-                        Signed in as: {currentUser.email}
+                        Signed in as: {currentUser}
                     </Navbar.Text>
                 </Navbar.Collapse>
             </Container>

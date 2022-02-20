@@ -1,4 +1,4 @@
-const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+export const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'
 ]
 export const formatDate = (today: Date) => {
@@ -19,6 +19,10 @@ export const documentName = (date: String) : string => {
 export const splitDates = (date: String): MyDate => {
   const arr = date.split('/')
   return new MyDate(arr[1], arr[0], arr[2])
+}
+
+export const monthToString = (month: number): string => {
+  return monthNames[month - 1]
 }
 
 class MyDate {

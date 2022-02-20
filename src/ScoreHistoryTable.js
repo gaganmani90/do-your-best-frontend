@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { Container, Table } from 'react-bootstrap'
 import PropTypes from 'prop-types'
+import { ScoreItem } from './model/ScoreItem'
 
 const ScoreItemRow = ({ scoreItem, row }) => {
   return (
@@ -15,16 +16,17 @@ const ScoreItemRow = ({ scoreItem, row }) => {
 }
 
 ScoreItemRow.propTypes = {
-  scoreItem: PropTypes.object.isRequired,
+  scoreItem: PropTypes.objectOf(ScoreItem).isRequired,
   row: PropTypes.number.isRequired
 }
 
-const ScoreHistoryTable = ({ scoreItems }) => {
+const ScoreHistoryTable = (props) => {
+  // console.log(props.scoreItems)
   return (
         <Container>
                     <Table striped bordered hover>
                         <TableHeader></TableHeader>
-                        <TableBody scoreItems={scoreItems}></TableBody>
+                        <TableBody scoreItems={props.scoreItems}></TableBody>
                     </Table>
         </Container>
 
@@ -32,13 +34,13 @@ const ScoreHistoryTable = ({ scoreItems }) => {
 }
 
 ScoreHistoryTable.propTypes = {
-  scoreItems: PropTypes.array.isRequired
+  scoreItems: PropTypes.arrayOf(PropTypes.shape(ScoreItem)).isRequired
 }
 
-const TableBody = ({ scoreItems }) => {
+const TableBody = (props) => {
   return (
         <tbody key="table-body">
-            {scoreItems.map((scoreItem, i) => {
+            {props.scoreItems.map((scoreItem, i) => {
               return (
                     <Fragment key={i}>
                         <ScoreItemRow scoreItem={scoreItem} row={i + 1}></ScoreItemRow>
@@ -50,7 +52,7 @@ const TableBody = ({ scoreItems }) => {
 }
 
 TableBody.propTypes = {
-  scoreItems: PropTypes.array.isRequired
+  scoreItems: PropTypes.arrayOf(ScoreItem).isRequired
 }
 
 const TableHeader = () => {
